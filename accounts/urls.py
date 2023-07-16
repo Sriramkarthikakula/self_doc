@@ -1,0 +1,30 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('pat',views.pat,name='pat'),
+    path('doc',views.doc,name='doc'),
+    path('symptoms',views.symptoms,name='symptoms'),
+    path('predict1',views.predict1,name='predict1'),
+    path('register',views.register,name='register'),
+    path('patreg',views.patreg,name="patreg"),
+    path('login',views.login,name="login"),
+    path('patlog',views.patlog,name='patlog'),
+    path('doclog',views.doclog,name='doclog'),
+    path('inter1',views.inter1,name='inter1'),
+    path('intercall1',views.intercall1,name='intercall1'),
+    path('patprofile',views.patprofile,name='patprofile'),
+    path('docprofile',views.docprofile,name="docprofile"),
+    path('suggest',views.suggest,name="suggest"),
+    path('notifydatabase',views.notifydatabase,name="notifydatabase"),
+    path('docnoc',views.docnoc,name="docnoc"),
+    path('appoint',views.appoint,name="appoint"),
+    path('docappoint',views.docappoint,name="docappoint"),
+    path('patappoint',views.patappoint,name='patappoint'),
+    path('dochistory',views.dochistory,name="dochistory"),
+    path('logout',views.logout,name="logout"),
+    path('pathist',views.pathist,name="pathist"),
+    path('patlogin',views.patlogin,name="patlogin"),
+    path('intercall2',views.intercall2,name='intercall2'),
+    path('inter2',views.inter2,name='inter2'),
+]
