@@ -1,0 +1,91 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+.navmar{
+    margin-right: 765px;
+}
+.navback1{
+    padding-top: 20px;
+}
+.navlink{
+    color:black;
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+hr{
+    width: 100%;
+    size: 3;
+}
+.patient{
+    position: absolute;
+    top: 25%;
+    left: 5%;
+}
+/* .patient:hover{
+    animation: patanime 2s linear infinite;
+}
+@keyframes patanime{
+    50%{
+        top: 25.5%;
+        left: 4.8%;
+    }
+} */
+.link{
+    position: absolute;
+    top: 50%;
+    left: 37%;
+}
+.doc{
+    position: absolute;
+    bottom: 1%;
+    right: 5%;
+}
+
+/* .doc:hover{
+    animation: docanime 1s linear infinite;
+} */
+/* @keyframes docanime{
+    50%{
+        top: 10.2%;
+        right: 4.8%;
+    }
+} */
+
+.patmessage{
+    width: 110px;
+    height:80px;
+    position: absolute;
+    top: 2%;
+    left: 55%;
+    border: 1px solid;
+    display: none;
+    border-radius: 10px;
+}
+.patdis{
+    display: block;
+}
+
+
+.docmessage{
+    width: 110px;
+    height:80px;
+    position: absolute;
+    top: 10%;
+    right: 65%;
+    border: 1px solid;
+    display: none;
+    border-radius: 10px;
+}
+.docdis{
+    display: block;
+}
+
+
+.box{
+    width: 70%;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: auto;
+}
