@@ -10,7 +10,7 @@ Login/Register as a Doctor or Patient
 
 >If you are a patient, you can view your profile,
 >You can also give symptoms and the our ML model will Predict the disease,
->After predicting the disease, the page will redirected to the available doctors page,
+>After predicting the disease, the page will redirected to the available doctors page,,
 >This page contains the details of the doctors who are classified based on your predicted disease,
 >Then you can select a doctor, after selecting the notification will be sent to the selected doctor,
 >when the doctor accepted your appointment, then you can see that in your appointment page
