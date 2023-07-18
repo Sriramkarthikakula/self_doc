@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+          font-family: "Lato", sans-serif;
+        }
+        
+        .sidebar {
+          height: 100%;
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          transition: 0.5s;
+          padding-top: 60px;
+        }
+        
+        .sidebar a {
+          padding: 8px 8px 8px 32px;
+          text-decoration: none;
+          font-size: 25px;
+          color: #818181;
+          display: block;
+          transition: 0.3s;
+        }
+        
+        .sidebar a:hover {
+          color: #f1f1f1;
+        }
+        
+        .sidebar .closebtn {
+          position: absolute;
+          top: 0;
+          right: 25px;
+          font-size: 36px;
+          margin-left: 50px;
+        }
+        
+        .openbtn {
+          font-size: 20px;
+          cursor: pointer;
+          background-color: #111;
+          color: white;
+          padding: 10px 15px;
+          border: none;
+          border-radius: 5px;
+        }
+        
+        .openbtn:hover {
+          background-color: #444;
+        }
+        
+        #main {
+          transition: margin-left .5s;
+          padding: 16px;
+        }
+        
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+          .sidebar {padding-top: 15px;}
+          .sidebar a {font-size: 18px;}
+        }
+        ul{
+          list-style: none;
+        }
+        .list{
+          width: 28.5%;
+          background-color: #E3F4F4;
+          border-radius: 0 0 5px 5px;
+        }
+        .list2{
+          width: 28.5%;
+          background-color: #E3F4F4;
+          border-radius: 0 0 5px 5px;
+        }
+        .list3{
+          width: 28.5%;
+          background-color: #E3F4F4;
+          border-radius: 0 0 5px 5px;
+        }
+        .list4{
+          width: 28.5%;
+          background-color: #E3F4F4;
+          border-radius: 0 0 5px 5px;
+        }
+        .list-items{
+          padding: 10px 5px;
+        }
+        .list-items:hover{
+          background-color: #dddddd;
+        }
+        </style>
+</head>
+<body>
+  {% load static %}
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <a href="patprofile"><i class="fa-solid fa-user"></i>&nbsp;&nbsp;Profile</a>
+      <a href="symptoms">Disease Predictor</a>
+      <a href="patappoint">Appointments</a>
+      <a href="pathist">Previous Records</a>
+      <a href="logout">Log Out</a>
+      </div>
+      
+      <div id="main">
+        <button class="openbtn" onclick="openNav()">☰</button>  
+      </div>
+      <div style="position:absolute;border:1px solid black;padding:0 50px;left:500px;border-radius:20px;">
+        <p style="margin-top: 15px;">Tell me your Symptopms</p>
+      </div>
+    <div class="box" style="padding: 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-7" style="overflow: hidden;padding-left: 0;">
+              <img src="{% static 'images/docrecord.png' %}" alt=""  width="80%" style="margin-top: 25px;">
+            </div>
+            <div class="col-5" style="padding: 10% 4% 5% 4%;">
+                <form method="get" action="predict1">
+                  {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="input" class="form-label">Symptopm-1</label>
+                        <input type="text" class="form-control" id="input" placeholder="Example input placeholder" name="s1" onclick="fun()">
+                      </div>
+                      <ul class="list" style="position:absolute;"></ul>
+                      <div class="mb-3">
+                        <label for="input2" class="form-label">Symptopm-2</label>
+                        <input type="text" class="form-control" id="input2" placeholder="Another input placeholder"  name="s2" onclick="fun2()">
+                      </div>
+                      <ul class="list2" style="position:absolute;"></ul>
+                      <div class="mb-3">
+                        <label for="input3" class="form-label">Symptopm-3</label>
+                        <input type="text" class="form-control" id="input3" placeholder="Another input placeholder" name="s3"  onclick="fun3()">
+                      </div>
+                      <ul class="list3" style="position:absolute;"></ul>
+                      <div class="mb-3">
+                        <label for="input4" class="form-label">Symptopm-4</label>
+                        <input type="text" class="form-control" id="input4" placeholder="Another input placeholder"  name="s4" onclick="fun4()">
+                      </div>
+                      <ul class="list4" style="position:absolute;"></ul>
+                      <button type="submit" class="btn btn-primary btn-lg">submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        function openNav() {
+          document.getElementById("mySidebar").style.width = "300px";
+          document.getElementById("main").style.marginLeft = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidebar").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+        }
+        let names = ['itching', 'skin_rash', 'nodal_skin_eruptions', 'continuous_sneezing', 'shivering', 'chills', 'joint_pain', 'stomach_pain', 'acidity', 'ulcers_on_tongue', 'muscle_wasting', 'vomiting', 'burning_micturition', 'spotting_ urination', 'fatigue', 'weight_gain', 'anxiety', 'cold_hands_and_feets', 'mood_swings', 'weight_loss', 'restlessness', 'lethargy', 'patches_in_throat', 'irregular_sugar_level', 'cough', 'high_fever', 'sunken_eyes', 'breathlessness', 'sweating', 'dehydration', 'indigestion', 'headache', 'yellowish_skin', 'dark_urine', 'nausea', 'loss_of_appetite', 'pain_behind_the_eyes', 'back_pain', 'constipation', 'abdominal_pain', 'diarrhoea', 'mild_fever', 'yellow_urine', 'yellowing_of_eyes', 'acute_liver_failure', 'fluid_overload', 'swelling_of_stomach', 'swelled_lymph_nodes', 'malaise', 'blurred_and_distorted_vision', 'phlegm', 'throat_irritation', 'redness_of_eyes', 'sinus_pressure', 'runny_nose', 'congestion', 'chest_pain', 'weakness_in_limbs', 'fast_heart_rate', 'pain_during_bowel_movements', 'pain_in_anal_region', 'bloody_stool', 'irritation_in_anus', 'neck_pain', 'dizziness', 'cramps', 'bruising', 'obesity', 'swollen_legs', 'swollen_blood_vessels', 'puffy_face_and_eyes', 'enlarged_thyroid', 'brittle_nails', 'swollen_extremeties', 'excessive_hunger', 'extra_marital_contacts', 'drying_and_tingling_lips', 'slurred_speech', 'knee_pain', 'hip_joint_pain', 'muscle_weakness', 'stiff_neck', 'swelling_joints', 'movement_stiffness', 'spinning_movements', 'loss_of_balance', 'unsteadiness', 'weakness_of_one_body_side', 'loss_of_smell', 'bladder_discomfort', 'foul_smell_of urine', 'continuous_feel_of_urine', 'passage_of_gases', 'internal_itching', 'toxic_look_(typhos)', 'depression', 'irritability', 'muscle_pain', 'altered_sensorium', 'red_spots_over_body', 'belly_pain', 'abnormal_menstruation', 'dischromic _patches', 'watering_from_eyes', 'increased_appetite', 'polyuria', 'family_history', 'mucoid_sputum', 'rusty_sputum', 'lack_of_concentration', 'visual_disturbances', 'receiving_blood_transfusion', 'receiving_unsterile_injections', 'coma', 'stomach_bleeding', 'distention_of_abdomen', 'history_of_alcohol_consumption', 'fluid_overload.1', 'blood_in_sputum', 'prominent_veins_on_calf', 'palpitations', 'painful_walking', 'pus_filled_pimples', 'blackheads', 'scurring', 'skin_peeling', 'silver_like_dusting', 'small_dents_in_nails', 'inflammatory_nails', 'blister', 'red_sore_around_nose', 'yellow_crust_ooze'];
+        let sortedNames = names.sort();
+        function fun(){
+        let input = document.getElementById("input");
+        input.addEventListener("keyup",function(e){
+          removeElements();
+          for (let i of sortedNames){
+            
+            if(i.toLocaleLowerCase().startsWith(input.value.toLocaleLowerCase()) && input.value != ""){
+              let listItem = document.createElement("li");
+              listItem.classList.add("list-items");
+              listItem.style.cursor="pointer";
+              listItem.setAttribute("onclick","displayNames('" + i +"')");
+              let word = "<b>" + i.substr(0,input.value.length) + "</b>";
+              word+=i.substr(input.value.length);
+              listItem.innerHTML = word;
+              document.querySelector(".list").appendChild(listItem);
+            } 
+          }
+        });
+        }
+        function displayNames(value){
+          input.value = value;
+          removeElements();
+        }
+        function removeElements(){
+          let items = document.querySelectorAll(".list-items");
+          items.forEach(function(item){
+            item.remove();
+          });
+        }
+        
+
+        function fun2(){
+          let input2 = document.getElementById("input2");
+        input2.addEventListener("keyup",function(e){
+          removeElements2();
+          for (let i of sortedNames){
+            
+            if(i.toLocaleLowerCase().startsWith(input2.value.toLocaleLowerCase()) && input2.value != ""){
+              let listItem = document.createElement("li");
+              listItem.classList.add("list-items");
+              listItem.style.cursor="pointer";
+              listItem.setAttribute("onclick","displayNames2('" +i +"')");
+              let word = "<b>" + i.substr(0,input2.value.length) + "</b>";
+              word+=i.substr(input2.value.length);
+              listItem.innerHTML = word;
+              document.querySelector(".list2").appendChild(listItem);
+            } 
+          }
+        });
+        
+        }
+        function displayNames2(value){
+          input2.value = value;
+          removeElements2();
+        }
+        function removeElements2(){
+          let items = document.querySelectorAll(".list-items");
+          items.forEach(function(item){
+            item.remove();
+          });
+        }
+        
+        function fun3(){
+          let input3 = document.getElementById("input3");
+        input3.addEventListener("keyup",function(e){
+          removeElements3();
+          for (let i of sortedNames){
+            
+            if(i.toLocaleLowerCase().startsWith(input3.value.toLocaleLowerCase()) && input3.value != ""){
+              let listItem = document.createElement("li");
+              listItem.classList.add("list-items");
+              listItem.style.cursor="pointer";
+              listItem.setAttribute("onclick","displayNames3('" +i +"')");
+              let word = "<b>" + i.substr(0,input3.value.length) + "</b>";
+              word+=i.substr(input3.value.length);
+              listItem.innerHTML = word;
+              document.querySelector(".list3").appendChild(listItem);
+            } 
+          }
+        });
+        
+        }
+        function displayNames3(value){
+          input3.value = value;
+          removeElements3();
+        }
+        function removeElements3(){
+          let items = document.querySelectorAll(".list-items");
+          items.forEach(function(item){
+            item.remove();
+          });
+        }
+        function fun4(){
+          let input4 = document.getElementById("input4");
+        input4.addEventListener("keyup",function(e){
+          removeElements4();
+          for (let i of sortedNames){
+            
+            if(i.toLocaleLowerCase().startsWith(input4.value.toLocaleLowerCase()) && input4.value != ""){
+              let listItem = document.createElement("li");
+              listItem.classList.add("list-items");
+              listItem.style.cursor="pointer";
+              listItem.setAttribute("onclick","displayNames4('" +i +"')");
+              let word = "<b>" + i.substr(0,input4.value.length) + "</b>";
+              word+=i.substr(input4.value.length);
+              listItem.innerHTML = word;
+              document.querySelector(".list4").appendChild(listItem);
+            } 
+          }
+        });
+        
+        }
+        function displayNames4(value){
+          input4.value = value;
+          removeElements4();
+        }
+        function removeElements4(){
+          let items = document.querySelectorAll(".list-items");
+          items.forEach(function(item){
+            item.remove();
+          });
+        }
+        
+        </script>
+</body>
+</html>
